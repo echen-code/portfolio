@@ -1,6 +1,42 @@
+import { type FC } from "react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
+// Types
+interface ButtonProps {
+  onClick: () => void;
+}
+
+// Constants
+const SKILLS = [
+  "JavaScript",
+  "TypeScript",
+  "C++",
+  "Rust",
+  "C",
+  "Python",
+  "Java",
+  "Kotlin",
+  "Ruby",
+  "HTML",
+  "CSS",
+  "React",
+  "React Native",
+  "GraphQL",
+  "Angular",
+  "Node.js",
+  "NestJS",
+  "Express.js",
+  "Ruby on Rails",
+  "Firebase",
+  "Git",
+  "SQL",
+  "MySQL",
+  "PostgreSQL",
+  "Firestore",
+] as const;
+
+// Styled components
 const AboutContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
@@ -78,54 +114,35 @@ const ContactButton = styled(Button)`
   }
 `;
 
-const Skills = [
-  "JavaScript",
-  "TypeScript",
-  "C++",
-  "Rust",
-  "C",
-  "Python",
-  "Java",
-  "Kotlin",
-  "Ruby",
-  "HTML",
-  "CSS",
-  "React",
-  "React Native",
-  "GraphQL",
-  "Angular",
-  "Node.js",
-  "NestJS",
-  "Express.js",
-  "Ruby on Rails",
-  "Firebase",
-  "Git",
-  "SQL",
-  "MySQL",
-  "PostgreSQL",
-  "Firestore",
-];
+// Helper functions
+const handleDownloadCV = (): void => {
+  window.open("/path-to-your-cv.pdf", "_blank");
+};
 
-const About = () => {
-  const handleDownloadCV = () => {
-    // Replace with your CV file path
-    window.open("/path-to-your-cv.pdf", "_blank");
-  };
+const scrollToContact = (): void => {
+  const contactSection = document.getElementById("contact");
+  if (contactSection) {
+    contactSection.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
 
+const buttonHover = {
+  whileHover: { scale: 1.05 },
+  whileTap: { scale: 0.95 },
+};
+
+// Main component
+const About: FC = () => {
   return (
     <AboutContainer>
-      <Section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <Section {...fadeInUp}>
         <Title>About Me</Title>
         <Text>
           I'm a passionate developer with a keen eye for creating elegant
@@ -133,31 +150,22 @@ const About = () => {
           engineering, I bring a unique perspective to every project I work on.
         </Text>
         <ButtonContainer>
-          <DownloadButton
-            onClick={handleDownloadCV}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <DownloadButton onClick={handleDownloadCV} {...buttonHover}>
             Download CV
           </DownloadButton>
-          <ContactButton
-            onClick={scrollToContact}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <ContactButton onClick={scrollToContact} {...buttonHover}>
             Contact Me
           </ContactButton>
         </ButtonContainer>
       </Section>
 
       <Section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        {...fadeInUp}
+        transition={{ ...fadeInUp.transition, delay: 0.2 }}
       >
         <Title>Skills</Title>
         <SkillsList>
-          {Skills.map((skill, index) => (
+          {SKILLS.map((skill, index) => (
             <Skill key={index}>{skill}</Skill>
           ))}
         </SkillsList>

@@ -36,3 +36,69 @@
     transform: rotate(360deg);
   }
 }
+
+.app-container {
+  min-height: 100vh;
+  background-color: #181818;
+  color: #333333;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.main-content {
+  width: 100%;
+  margin: 0;
+  padding: 6rem 0 2rem;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#about, #experience {
+  background-color: #ffffff;
+}
+
+/* Navbar styles */
+nav {
+  background-color: #181818;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+nav a {
+  color: #333333;
+}
+
+/* Navbar on home screen */
+nav.home-screen {
+  background-color: transparent;
+}
+
+nav.home-screen a {
+  color: #ffffff;
+}
+
+/* Navbar on experience screen */
+nav.experience-screen {
+  background-color: #181818;
+}
+
+nav.experience-screen a {
+  color: #ffffff;
+}
+
+/* When navbar is not visible */
+nav.hidden {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}

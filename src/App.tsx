@@ -1,92 +1,114 @@
-import { useState, useEffect, useRef } from "react";
-import styled from "@emotion/styled";
+import { useState, useEffect, useRef, type FC } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import "./App.css";
 
-const AppContainer = styled.div`
-  min-height: 100vh;
-  background-color: #ffffff;
-  color: #333333;
-`;
+// Types
+interface SectionRefs {
+  about: React.RefObject<HTMLElement | null>;
+  experience: React.RefObject<HTMLElement | null>;
+  mainContent: React.RefObject<HTMLElement | null>;
+}
 
-const MainContent = styled.main`
-  width: 100%;
-  margin: 0;
-  padding: 6rem 0 2rem;
-`;
+interface ScreenState {
+  isNavbarVisible: boolean;
+  isHomeScreen: boolean;
+  isExperienceScreen: boolean;
+}
 
-const Section = styled.section`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
+// Helper functions
+const getNavbarClass = (
+  isHomeScreen: boolean,
+  isExperienceScreen: boolean
+): string => {
+  if (isHomeScreen) return "home-screen";
+  if (isExperienceScreen) return "experience-screen";
+  return "";
+};
 
-function App() {
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const aboutRef = useRef<HTMLElement>(null);
+const isElementInViewport = (element: HTMLElement | null): boolean => {
+  if (!element) return false;
+  const rect = element.getBoundingClientRect();
+  return rect.top <= 0 && rect.bottom >= 0;
+};
+
+// Main component
+const App: FC = () => {
+  const [screenState, setScreenState] = useState<ScreenState>({
+    isNavbarVisible: true,
+    isHomeScreen: true,
+    isExperienceScreen: false,
+  });
+
+  const refs: SectionRefs = {
+    about: useRef<HTMLElement | null>(null),
+    experience: useRef<HTMLElement | null>(null),
+    mainContent: useRef<HTMLElement | null>(null),
+  };
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    let lastScrollY = 0;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const currentScrollY = window.scrollY;
-          const isScrollingDown = currentScrollY > lastScrollY;
+    const handleScroll = (): void => {
+      const currentScrollY = refs.mainContent.current?.scrollTop ?? 0;
+      const isScrollingDown = currentScrollY > lastScrollY;
 
-          // Only hide navbar when scrolling down and About is visible
-          if (entry.isIntersecting && isScrollingDown) {
-            setIsNavbarVisible(false);
-          } else if (!entry.isIntersecting || !isScrollingDown) {
-            setIsNavbarVisible(true);
-          }
+      setScreenState((prev) => ({
+        ...prev,
+        isHomeScreen: currentScrollY < window.innerHeight,
+        isExperienceScreen: isElementInViewport(refs.experience.current),
+        isNavbarVisible: !(
+          isElementInViewport(refs.about.current) && isScrollingDown
+        ),
+      }));
 
-          lastScrollY = currentScrollY;
-        });
-      },
-      {
-        threshold: 0.2,
-      }
-    );
+      lastScrollY = currentScrollY;
+    };
 
-    if (aboutRef.current) {
-      observer.observe(aboutRef.current);
+    const mainContent = refs.mainContent.current;
+    if (mainContent) {
+      mainContent.addEventListener("scroll", handleScroll);
     }
 
     return () => {
-      if (aboutRef.current) {
-        observer.unobserve(aboutRef.current);
+      if (mainContent) {
+        mainContent.removeEventListener("scroll", handleScroll);
       }
     };
   }, []);
 
   return (
-    <AppContainer>
-      <Navbar isVisible={isNavbarVisible} />
-      <MainContent>
-        <Section id="home">
+    <div className="app-container">
+      <Navbar
+        isVisible={screenState.isNavbarVisible}
+        className={getNavbarClass(
+          screenState.isHomeScreen,
+          screenState.isExperienceScreen
+        )}
+      />
+      <main className="main-content" ref={refs.mainContent}>
+        <section className="section" id="home">
           <Home />
-        </Section>
-        <Section id="about" ref={aboutRef}>
+        </section>
+        <section className="section" id="about" ref={refs.about}>
           <About />
-        </Section>
-        <Section id="experience">
+        </section>
+        <section className="section" id="experience" ref={refs.experience}>
           <Experience />
-        </Section>
-        {/* <Section id="projects">
+        </section>
+        {/* <section className="section" id="projects">
           <Projects />
-        </Section> */}
-        <Section id="contact">
+        </section> */}
+        <section className="section" id="contact">
           <Contact />
-        </Section>
-      </MainContent>
-    </AppContainer>
+        </section>
+      </main>
+    </div>
   );
-}
+};
 
 export default App;

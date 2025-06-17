@@ -1,6 +1,36 @@
+import { type FC } from "react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
+// Types
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+}
+
+// Constants
+const PROJECTS: Project[] = [
+  {
+    title: "Project One",
+    description:
+      "A brief description of your first project and its key features.",
+    tags: ["React", "TypeScript", "Node.js"],
+  },
+  {
+    title: "Project Two",
+    description:
+      "Description of your second project highlighting its main functionalities.",
+    tags: ["Python", "Django", "PostgreSQL"],
+  },
+  {
+    title: "Project Three",
+    description: "Overview of your third project and what makes it special.",
+    tags: ["React Native", "Firebase", "Redux"],
+  },
+];
+
+// Styled components
 const ProjectsContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -68,49 +98,40 @@ const Tag = styled.span`
   color: #666666;
 `;
 
-const projects = [
-  {
-    title: "Project One",
-    description:
-      "A brief description of your first project and its key features.",
-    tags: ["React", "TypeScript", "Node.js"],
-  },
-  {
-    title: "Project Two",
-    description:
-      "Description of your second project highlighting its main functionalities.",
-    tags: ["Python", "Django", "PostgreSQL"],
-  },
-  {
-    title: "Project Three",
-    description: "Overview of your third project and what makes it special.",
-    tags: ["React Native", "Firebase", "Redux"],
-  },
-];
+// Animation variants
+const fadeInUp = (delay: number) => ({
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, delay },
+});
 
-const Projects = () => {
+// Subcomponents
+const ProjectCardComponent: FC<{ project: Project; index: number }> = ({
+  project,
+  index,
+}) => (
+  <ProjectCard {...fadeInUp(index * 0.1)}>
+    <ProjectImage>Project Image</ProjectImage>
+    <ProjectContent>
+      <ProjectTitle>{project.title}</ProjectTitle>
+      <ProjectDescription>{project.description}</ProjectDescription>
+      <ProjectTags>
+        {project.tags.map((tag, tagIndex) => (
+          <Tag key={tagIndex}>{tag}</Tag>
+        ))}
+      </ProjectTags>
+    </ProjectContent>
+  </ProjectCard>
+);
+
+// Main component
+const Projects: FC = () => {
   return (
     <ProjectsContainer>
       <SectionTitle>Projects</SectionTitle>
       <ProjectGrid>
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <ProjectImage>Project Image</ProjectImage>
-            <ProjectContent>
-              <ProjectTitle>{project.title}</ProjectTitle>
-              <ProjectDescription>{project.description}</ProjectDescription>
-              <ProjectTags>
-                {project.tags.map((tag, tagIndex) => (
-                  <Tag key={tagIndex}>{tag}</Tag>
-                ))}
-              </ProjectTags>
-            </ProjectContent>
-          </ProjectCard>
+        {PROJECTS.map((project, index) => (
+          <ProjectCardComponent key={index} project={project} index={index} />
         ))}
       </ProjectGrid>
     </ProjectsContainer>

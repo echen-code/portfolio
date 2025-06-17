@@ -1,6 +1,19 @@
+import { type FC } from "react";
 import styled from "@emotion/styled";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Types
+interface NavbarProps {
+  isVisible: boolean;
+  className?: string;
+}
+
+interface NavLinkProps {
+  label: string;
+  sectionId: string;
+}
+
+// Styled components
 const Nav = styled(motion.nav)`
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
@@ -66,22 +79,33 @@ const NavLink = styled.a`
   }
 `;
 
-const scrollToSection = (sectionId: string) => {
+// Helper functions
+const scrollToSection = (sectionId: string): void => {
   const element = document.getElementById(sectionId);
   if (element) {
     element.scrollIntoView({ behavior: "smooth" });
   }
 };
 
-interface NavbarProps {
-  isVisible: boolean;
-}
+// Subcomponents
+const NavigationLink: FC<NavLinkProps> = ({ label, sectionId }) => (
+  <NavLink onClick={() => scrollToSection(sectionId)}>{label}</NavLink>
+);
 
-const Navbar = ({ isVisible }: NavbarProps) => {
+const navigationItems: NavLinkProps[] = [
+  { label: "Home", sectionId: "home" },
+  { label: "About", sectionId: "about" },
+  { label: "Experience", sectionId: "experience" },
+  { label: "Contact", sectionId: "contact" },
+];
+
+// Main component
+const Navbar: FC<NavbarProps> = ({ isVisible, className }) => {
   return (
     <AnimatePresence>
       {isVisible && (
         <Nav
+          className={className}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -90,17 +114,13 @@ const Navbar = ({ isVisible }: NavbarProps) => {
           <NavContainer>
             <Logo onClick={() => scrollToSection("home")}>Ethan Chen</Logo>
             <NavLinks>
-              <NavLink onClick={() => scrollToSection("home")}>Home</NavLink>
-              <NavLink onClick={() => scrollToSection("about")}>About</NavLink>
-              <NavLink onClick={() => scrollToSection("experience")}>
-                Experience
-              </NavLink>
-              <NavLink onClick={() => scrollToSection("projects")}>
-                Projects
-              </NavLink>
-              <NavLink onClick={() => scrollToSection("contact")}>
-                Contact
-              </NavLink>
+              {navigationItems.map(({ label, sectionId }) => (
+                <NavigationLink
+                  key={sectionId}
+                  label={label}
+                  sectionId={sectionId}
+                />
+              ))}
             </NavLinks>
           </NavContainer>
         </Nav>

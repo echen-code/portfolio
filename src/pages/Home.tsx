@@ -1,6 +1,13 @@
+import { type FC } from "react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
+// Types
+interface AnimationProps {
+  delay?: number;
+}
+
+// Styled components
 const HomeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
@@ -26,25 +33,23 @@ const Subtitle = styled(motion.p)`
   line-height: 1.6;
 `;
 
-const Home = () => {
+// Animation variants
+const fadeInUp = ({ delay = 0 }: AnimationProps) => ({
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, delay },
+});
+
+// Main component
+const Home: FC = () => {
   return (
     <HomeContainer
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      <Title
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        Welcome to My Portfolio
-      </Title>
-      <Subtitle
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-      >
+      <Title {...fadeInUp({ delay: 0.2 })}>Welcome to My Portfolio</Title>
+      <Subtitle {...fadeInUp({ delay: 0.4 })}>
         I'm a passionate developer creating meaningful digital experiences.
         Explore my work and get in touch to collaborate.
       </Subtitle>
