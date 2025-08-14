@@ -116,7 +116,14 @@ const ContactButton = styled(Button)`
 
 // Helper functions
 const handleDownloadCV = (): void => {
-  window.open("/path-to-your-cv.pdf", "_blank");
+  // Create a download link for the PDF
+  const link = document.createElement("a");
+  link.href = "/Ethan-Chen-Resume.pdf";
+  link.download = "Ethan-Chen-Resume.pdf";
+  link.target = "_blank";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };
 
 const scrollToContact = (): void => {
@@ -145,9 +152,9 @@ const About: FC = () => {
       <Section {...fadeInUp}>
         <Title>About Me</Title>
         <Text>
-          I'm a passionate developer with a keen eye for creating elegant
-          solutions to complex problems. With a background in software
-          engineering, I bring a unique perspective to every project I work on.
+          I'm a passionate developer who loves to look for creative solutions to
+          complex problems. With a background in software engineering, I bring a
+          unique perspective to every project I work on.
         </Text>
         <ButtonContainer>
           <DownloadButton onClick={handleDownloadCV} {...buttonHover}>

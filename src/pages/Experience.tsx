@@ -13,68 +13,70 @@ interface Experience {
 // Constants
 const EXPERIENCES: Experience[] = [
   {
-    title: "Full-Stack Developer Intern",
+    title: "Software Engineer Intern - SaaS Team",
     company: "Auvik Networks",
     dates: "01/2024 – 08/2024",
     description: (
       <>
-        <b>• Scaled enterprise authentication system</b> by implementing
-        ReactJS-based SSO integration, enabling secure access for 2,500+ clients
-        and increasing platform adoption by <b>35%</b>.<br />
-        <b>• Architected and delivered</b> complete full-stack solution for
-        application notes and tagging system using <b>NodeJS and PostgreSQL</b>,
-        reducing data retrieval time by <b>60%</b>.<br />
-        <b>• Optimized sprint productivity</b> through strategic code reviews
-        and agile planning, directly contributing to <b>20%</b> increase in team
-        delivery velocity and on-time product releases.
+        <b>• Enhanced customer experience and trust</b> by implementing ReactJS
+        and NodeJS-based SSO integration, enabling secure access for <b>2,500+</b>
+        clients and increasing platform adoption by <b>35%</b>.<br />
+        <b>• Architected and delivered E2E solution</b> for application notes
+        and tagging system using <b>NodeJS and PostgreSQL</b>, reducing network
+        latency by <b>60%</b> and delivering smoother user experience.
+        <br />
+        <b>• Achieved runner-up at a company hackathon</b> by integrating Claude
+        AI to rapidly prototype a summarization tool, demonstrating agile
+        innovation and enhancing the platform's competitive edge.
       </>
     ),
   },
   {
-    title: "Full-Stack Developer Intern",
+    title: "Software Engineer Intern",
     company: "SAIRYŌ",
     dates: "05/2023 – 08/2023",
     description: (
       <>
-        <b>• Transformed user experience</b> by rebuilding web portal with{" "}
-        <b>Angular and TypeScript</b>, resulting in <b>40%</b> increased event
-        bookings and <b>25%</b> higher donation conversion for 50+ artists.
-        <br />
         <b>• Engineered high-performance GraphQL endpoints</b> that reduced API
-        response time by <b>45%</b>, dramatically improving site interactivity
-        and user retention for growing platform.
+        response times by <b>45%</b>, dramatically improving platform
+        responsiveness and 30-day user retention by <b>15%</b> as measured by
+        analytics.
+        <br />
+        <b>• Rebuilt web portal with Angular and TypeScript</b>, greatly
+        improved user experience, demonstrated from <b>40%</b> increase in event
+        bookings and <b>25%</b> higher donation conversion for <b>50+ artists</b>.
       </>
     ),
   },
   {
-    title: "Full-Stack Developer Intern",
-    company: "SkyView Suites",
+    title: "Software Engineer Intern",
+    company: "Skyview Suites",
     dates: "09/2022 – 12/2022",
     description: (
       <>
-        <b>• Revolutionized admin dashboard UI/UX</b> using{" "}
+        <b>• Revamped admin dashboard UI/UX</b> using{" "}
         <b>ReactJS and TypeScript</b>, enabling efficient management of rental
-        services for 1,000+ daily users and cutting administrative time by{" "}
+        services for <b>1,000+</b> daily users and cutting administrative time by{" "}
         <b>30%</b>.<br />
         <b>• Designed and implemented RESTful API architecture</b> with{" "}
         <b>NestJS and PostgreSQL</b>, establishing core logistics infrastructure
-        that processes 5,000+ daily transactions.
+        that processes <b>5,000+</b> daily transactions.
         <br />
-        <b>• Spearheaded microservices transformation</b> for critical business
-        functions including booking and invoicing, leveraging{" "}
-        <b>RabbitMQ and AWS ECS</b> to achieve <b>99.9%</b> system uptime.
+        <b>• Led microservices migrations</b> for core business functions
+        including booking and invoicing, leveraging <b>RabbitMQ and AWS ECS</b>{" "}
+        to reduce service latency by <b>45%</b> at P99.9.
       </>
     ),
   },
   {
-    title: "Mobile Developer Intern",
+    title: "Software Engineer Intern - Mobile Team",
     company: "Archipelago Genomics",
     dates: "01/2022 – 04/2022",
     description: (
       <>
         <b>• Launched market-ready fitness application</b> from concept to
         deployment using <b>Expo with React Native and Firebase</b>, acquiring{" "}
-        <b>250+ users</b> within first month and achieving <b>4.7/5</b> star
+        <b>250+ users</b> within two months and earning <b>4.7/5</b> star
         rating.
         <br />
         <b>• Drove 35% increase in user retention</b> by implementing
@@ -84,17 +86,18 @@ const EXPERIENCES: Experience[] = [
     ),
   },
   {
-    title: "Full-Stack Developer Intern",
+    title: "Software Engineering Intern",
     company: "Sponsorpulse",
     dates: "05/2021 – 08/2021",
     description: (
       <>
-        <b>• Delivered platform redesign</b> using{" "}
-        <b>ReactJS, Ruby, and Figma</b> that connected 200+ users to 20,000+
-        brands, increasing user engagement metrics by <b>42%</b>.<br />
         <b>• Created high-performance RESTful API</b> with <b>Ruby on Rails</b>{" "}
-        that decreased property report generation time by <b>65%</b>, enabling
-        real-time data access for client decision-making.
+        that decreased property report generation time by <b>65%</b>, empowering
+        customers to make more informed decisions with real-time data.
+        <br />
+        <b>• Executed platform redesign</b> using{" "}
+        <b>ReactJS, Ruby, and Figma</b> that connected <b>200+</b> users to <b>20,000+ </b> 
+        brands, increasing user engagement metrics by <b>42%</b>.
       </>
     ),
   },

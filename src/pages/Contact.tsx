@@ -18,7 +18,7 @@ interface ContactInfo {
 const CONTACT_INFO: ContactInfo[] = [
   {
     icon: "📍",
-    title: "Where to find me",
+    title: "Find Me At",
     content: ["Delta", "Vancouver, BC", "Canada"],
   },
   {
