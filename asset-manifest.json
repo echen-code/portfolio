@@ -1,19 +1,20 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.e78c9eca.css",
-    "main.js": "/portfolio/static/js/main.9e73c8b6.js",
+    "main.js": "/portfolio/static/js/main.8b112549.js",
     "static/media/bg6.jpg": "/portfolio/static/media/bg6.f65f1f77886b8d6faf07.jpg",
     "static/media/bg3.jpg": "/portfolio/static/media/bg3.ed35888c0ec31ff02b75.jpg",
     "static/media/bg4.jpg": "/portfolio/static/media/bg4.359f06334d7b8044628f.jpg",
     "static/media/bg1.jpg": "/portfolio/static/media/bg1.58c1ddbd1a3cd3dd9a11.jpg",
     "static/media/bg2.jpg": "/portfolio/static/media/bg2.c14bc5efbaafb1a6f54d.jpg",
     "static/media/bg5.jpg": "/portfolio/static/media/bg5.172f3fb11a16e788cbb2.jpg",
+    "static/media/Ethan-Chen-Resume.pdf": "/portfolio/static/media/Ethan-Chen-Resume.8af1e1c5a534ef11ecec.pdf",
     "index.html": "/portfolio/index.html",
     "main.e78c9eca.css.map": "/portfolio/static/css/main.e78c9eca.css.map",
-    "main.9e73c8b6.js.map": "/portfolio/static/js/main.9e73c8b6.js.map"
+    "main.8b112549.js.map": "/portfolio/static/js/main.8b112549.js.map"
   },
   "entrypoints": [
     "static/css/main.e78c9eca.css",
-    "static/js/main.9e73c8b6.js"
+    "static/js/main.8b112549.js"
   ]
 }
